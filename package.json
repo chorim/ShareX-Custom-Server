@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/App.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tsc --module commonjs",
     "start": "ts-node src/bin/www.ts"
   },
   "author": "",
