@@ -1,4 +1,3 @@
-import { Request, Response } from "express"
 import { createHandler } from "../../utils/createResponse"
 
 export const upload = createHandler((request, response) => {
