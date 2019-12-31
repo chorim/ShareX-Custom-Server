@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
+import { createHandler } from "../../utils/createResponse"
 
-export const upload = async (req: Request, res: Response) => {
-  return res.status(200).json({test: true})
-}
+export const upload = createHandler((request, response) => {
+  response.sendDefaultResponse({ status: true, message: "Hello" })
+})

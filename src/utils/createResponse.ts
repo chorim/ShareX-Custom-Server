@@ -1,7 +1,18 @@
-import { DefaultResponse, ShareXCustomResponse } from "../types/response"
-import { Response } from "express"
+import express from 'express'
+import { DefaultResponse } from "../types/response"
 
-export const createDefaultResponse = (res: Response, status: number, message: string) => {
-  const response: DefaultResponse = { status: (status === 200), message }
-  return res.status(status).json(response)
+type CustomRequest = express.Request
+type CustomResponse = express.Response & {
+  sendDefaultResponse: (response: DefaultResponse) => void
+}
+
+type Handler = (request: CustomRequest, response: CustomResponse) => void | Promise<void>
+
+export const createHandler = (handler: Handler) => (request: express.Request, response: express.Response) => {
+  const customRequest = request as CustomRequest
+  const customResponse = response as CustomResponse
+  customResponse.sendDefaultResponse = (res: DefaultResponse) => {
+    response.status(200).json(res)
+  }
+  handler(customRequest, customResponse)
 }
