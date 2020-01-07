@@ -4,6 +4,7 @@ import path from 'path'
 import createDirectory from "../../src/utils/createDirectory"
 import { promisify } from 'util'
 const stat = promisify(fs.stat)
+const rmdir = promisify(fs.rmdir)
 
 describe('디렉토리 생성 테스트', () => {
 
@@ -24,6 +25,7 @@ describe('디렉토리 생성 테스트', () => {
     await new Promise((r) => setTimeout(r, 100))
     const result = await stat(dirPath)
     await rmdir(dirPath)
+    await rmdir(path.join(__dirname, "./hello"))
     expect(result.isDirectory()).toBe(true)
   })
 
