@@ -13,6 +13,7 @@ describe('디렉토리 생성 테스트', () => {
     await createDirectory("./tests/functions" + dir)
     await new Promise((r) => setTimeout(r, 100))
     const result = await stat(dirPath)
+    await rmdir(dirPath)
     expect(result.isDirectory()).toBe(true)
   })
 
@@ -22,6 +23,7 @@ describe('디렉토리 생성 테스트', () => {
     await createDirectory("./tests/functions" + dir)
     await new Promise((r) => setTimeout(r, 100))
     const result = await stat(dirPath)
+    await rmdir(dirPath)
     expect(result.isDirectory()).toBe(true)
   })
 
