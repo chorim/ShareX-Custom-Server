@@ -1,4 +1,5 @@
 import "./libs/dotenv"
+import "./extensions"
 import express from "express"
 import v1 from "./routes/v1"
 import { createHandler } from "./utils/createResponse"

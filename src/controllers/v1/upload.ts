@@ -1,5 +1,6 @@
 import { createHandler } from "../../utils/createResponse"
 
-export const upload = createHandler((request, response) => {
-  response.sendDefaultResponse({ status: true, message: "Hello" })
+export const upload = createHandler((req, res) => {
+
+  res.sendDefaultResponse({ status: true, message: "Hello" })
 })
