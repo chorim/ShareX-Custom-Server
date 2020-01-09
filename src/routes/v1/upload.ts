@@ -5,7 +5,7 @@ import createDirectory from "../../utils/createDirectory"
 import multer from "multer"
 import fs from "fs"
 
-const maxUploadSizeLimit = +(process.env.MAX_UPLOAD_CAPACITY_LIMIT as string)
+const maxUploadSizeLimit = +(process.env.MAX_UPLOAD_CAPACITY_LIMIT as string) | 10
 
 type Request = Express.Request & {
   body: { filename: string }
