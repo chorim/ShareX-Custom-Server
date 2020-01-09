@@ -4,9 +4,6 @@ import { diskStorage } from "multer"
 import createDirectory from "../../utils/createDirectory"
 import multer from "multer"
 import fs from "fs"
-import { promisify } from 'util'
-
-const access = promisify(fs.access)
 
 const maxUploadSizeLimit = +(process.env.MAX_UPLOAD_CAPACITY_LIMIT as string)
 
