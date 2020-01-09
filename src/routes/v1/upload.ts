@@ -3,6 +3,12 @@ import { Router } from "express"
 import { diskStorage } from "multer"
 import createDirectory from "../../utils/createDirectory"
 import multer from "multer"
+import fs from "fs"
+import { promisify } from 'util'
+
+const access = promisify(fs.access)
+
+const maxUploadSizeLimit = +(process.env.MAX_UPLOAD_CAPACITY_LIMIT as string)
 
 type Request = Express.Request & {
   body: { filename: string }
@@ -11,8 +17,10 @@ type Request = Express.Request & {
 const storage = diskStorage({
   destination: async (req, file, cb) => {
     const dir = process.env.STORAGE_DIR as string
-    await createDirectory(dir)
-    cb(null, dir)
+    fs.access(dir, fs.constants.F_OK, async (err) => {
+      if (err) await createDirectory(dir)
+      cb(null, dir)
+    })
   },
   filename: (req: Request, file, cb) => {
     const filename = (!req.body.filename) ? file.originalname : req.body.filename
@@ -22,10 +30,10 @@ const storage = diskStorage({
 
 const uploader = multer({
   storage, limits: {
-    fileSize: 1024 * 1024 * 1024 * 10 // 10 MiB
+    fileSize: 1024 * 1024 * 1024 * maxUploadSizeLimit // default size is 10MB
   }
 })
 const router = Router()
-router.route('/upload').post(uploader.array('sharex', 100), upload)
+router.route('/upload').post(uploader.single('sharex'), upload)
 
 export default router

@@ -5,7 +5,7 @@ const mkdir = promisify(fs.mkdir)
 
 export default async (dir: string) => {
   let path = '';
-  dir
+  await dir
     .split('/')
     .filter((item: string) => item !== '')
     .asyncForEach(async (element: string) => {
