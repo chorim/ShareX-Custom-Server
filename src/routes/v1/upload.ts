@@ -4,6 +4,7 @@ import { diskStorage } from "multer"
 import createDirectory from "../../utils/createDirectory"
 import multer from "multer"
 import fs from "fs"
+import auth from "../../middlewares/auth"
 
 const maxUploadSizeLimit = +(process.env.MAX_UPLOAD_CAPACITY_LIMIT as string) | 10
 
@@ -31,6 +32,6 @@ const uploader = multer({
   }
 })
 const router = Router()
-router.route('/upload').post(uploader.single('sharex'), upload)
+router.route('/upload').post(auth, uploader.single('sharex'), upload)
 
 export default router
