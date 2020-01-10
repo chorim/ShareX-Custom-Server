@@ -13,7 +13,7 @@ type Request = Express.Request & {
 }
 
 const storage = diskStorage({
-  destination: async (req, file, cb) => {
+  destination: (req, file, cb) => {
     const dir = process.env.STORAGE_DIR as string
     fs.access(dir, fs.constants.F_OK, async (err) => {
       if (err) await createDirectory(dir)

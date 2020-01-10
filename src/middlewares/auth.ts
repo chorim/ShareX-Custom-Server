@@ -10,7 +10,6 @@ class CustomError extends Error {
 
 export default (req: Request, res: Response, next: NextFunction) => {
   const { authorization } = req.headers
-  console.log(authorization)
   const user = isUser(authorization as string)
   if (!user) {
     let err = new CustomError("Not authorized user.")
