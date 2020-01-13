@@ -14,6 +14,17 @@ npm insatll
 
 and modify `.env` file for your configuration.
 
+## ShareX configuration
+1. Install latest ShareX client.
+2. Run the ShareX client.
+3. Tap on 'destination' and 'Custom uploader setting' in left side-bar. 
+4. Enter as shown below screenshot. (You can customize it)
+<img width="948" alt="스크린샷 2020-01-13 오후 4 11 05" src="https://user-images.githubusercontent.com/11539551/72237881-59ff2180-361f-11ea-8e59-49ea20bf22eb.png">
+5. Due to security issues, you will need to modify Authorization headers.
+6. Enter as shown below screenshot.
+<img width="947" alt="스크린샷 2020-01-13 오후 4 13 23" src="https://user-images.githubusercontent.com/11539551/72237961-aa767f00-361f-11ea-8f55-da08e5c6ae4d.png">
+7. Done.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
