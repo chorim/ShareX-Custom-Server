@@ -7,6 +7,8 @@ import createError from "http-errors"
 
 export const app = express()
 
+app.use('/upload', express.static(process.env.STORAGE_DIR ?? './storage'))
+
 app.get('/', createHandler((req, res) =>
   res.sendDefaultResponse({status: true, message: "ShareX-Custom-Server is now working."})
 ))
